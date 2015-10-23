@@ -19,6 +19,13 @@ class Answer(models.Model):
     user = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
+
+    def __unicode__(self):
+        return self.text
+
+class Vote(models.Model):
+    user = models.ForeignKey(User)
+    question = models.ForeignKey(Question)
     
     def __unicode__(self):
-        return self.text 
+      return "%s upvoted" % (self.user.username)
