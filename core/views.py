@@ -178,9 +178,10 @@ class UserDeleteView(DeleteView):
     user.save()
     return redirect(self.get_success_url())
 
-
-
-
+class SearchQuestionListView(QuestionListView):
+  def get_queryset(self):
+    incoming_query_string = self.request.GET.get('query','')
+    return Question.objects.filter(title__icontains=incoming_query_string)
 
 
 
